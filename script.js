@@ -71,12 +71,10 @@ function lightModeFunc() {
     if(document.body.classList.contains("lightModeToggle")) {
         lightMode.innerHTML = '<i class="fa-solid fa-moon"></i>'
         localStorage.setItem("lightMode", "1")
-        console.log(localStorage);
 
     } else {
         lightMode.innerHTML = '<i class="fa-solid fa-sun"></i>';
         localStorage.setItem("lightMode", "0")
-        console.log(localStorage);
     }
 }
 
@@ -93,7 +91,6 @@ function updateLS() {
         arr.push(newObjLS);
     })
     localStorage.setItem("notes", JSON.stringify(arr));
-    console.log(localStorage);
 }
 
 function getNotes() {
@@ -102,7 +99,6 @@ function getNotes() {
         newNote(noteItem);
     })
 
-    console.log(JSON.parse(localStorage.getItem("lightMode")))
     if(JSON.parse(localStorage.getItem("lightMode"))) {
         document.body.classList.add("lightModeToggle");
         lightMode.innerHTML = '<i class="fa-solid fa-moon"></i>'
