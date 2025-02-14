@@ -3,6 +3,11 @@ const createNote = document.getElementById("createNote");
 const clearNote = document.getElementById("clearNote");
 const lightMode = document.querySelector(".lightMode");
 
+document.addEventListener('gesturestart', function (e) {
+    e.preventDefault();
+});
+
+
 createNote.addEventListener("click", ()=> {
     let newObj = {
         value: ""
@@ -13,7 +18,9 @@ createNote.addEventListener("click", ()=> {
 clearNote.addEventListener("click", ()=> {
     notes.innerHTML = '';
     updateLS();
-})
+});
+
+lightMode.addEventListener("click", lightModeFunc);
 
 function newNote(newObj) {
     let createdNote = document.createElement("div");
@@ -39,6 +46,10 @@ function newNote(newObj) {
     const trash = createdNote.querySelector(".trash");
 
     notes.appendChild(createdNote);
+    createdNote.classList.add("noteCreated");
+    setTimeout(() => {
+        createdNote.classList.remove("noteCreated");
+    }, 350);
     updateLS();
 
     saveEdit.addEventListener("click", ()=> {
@@ -59,12 +70,13 @@ function newNote(newObj) {
     });
 
     trash.addEventListener("click", ()=> {
-        createdNote.remove();
-        updateLS();
+        createdNote.classList.add("noteDeleted");
+        setTimeout(()=> {
+            createdNote.remove();
+            updateLS();
+        }, 300)
     })
 }
-
-lightMode.addEventListener("click", lightModeFunc);
 
 function lightModeFunc() {
     document.body.classList.toggle("lightModeToggle");

@@ -51,19 +51,26 @@ header {
 }
 
 .notes {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+    gap: 1.5rem 0;
     margin: 0 auto;
     width: 95%;
     justify-content: center;
+    align-items: center;
+}
+
+.notes::after {
+    content: "";
+    width: 325px;
 }
 
 .note {
-    width: 325px;
+    width: 95%;
     height: 325px;
     position: relative;
     border-radius: 15px;
-    margin: 0.5rem;
+    margin: 0 auto;
 }
 
 .note textarea {
@@ -77,6 +84,7 @@ header {
     color: var(--white);
     font-style: italic;
     font-family: "Raleway", serif;
+    font-size: 1rem;
 }
 
 .noteAppend {
@@ -138,18 +146,6 @@ header {
     animation: animate 0.3s;
 }
 
-@keyframes animate {
-    0% {
-            transform: translateY(0);
-    }
-    50% {
-            transform: translateY(-5px);
-    }
-    100% {
-            transform: translateY(0);
-    }
-}
-
 .note:hover .tools button {
     transform: scale(1);
     pointer-events: all;
@@ -177,4 +173,49 @@ header {
     bottom: 1rem;
     right: 1rem;
 }
+
+@media (max-width: 1024px) {
+    .tools button {
+        transform: scale(1) !important;
+    }
+}
+
+@keyframes animate {
+    0% {
+            transform: translateY(0);
+    }
+    50% {
+            transform: translateY(-5px);
+    }
+    100% {
+            transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.noteCreated {
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.noteDeleted {
+    animation: fadeOut 0.3s;
+}
+
 
