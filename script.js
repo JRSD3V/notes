@@ -16,8 +16,12 @@ createNote.addEventListener("click", ()=> {
 });
 
 clearNote.addEventListener("click", ()=> {
-    notes.innerHTML = '';
-    updateLS();
+    notes.classList.add("noteDeleted");
+    setTimeout(()=> {
+        notes.innerHTML = '';
+        notes.classList.remove("noteDeleted");
+        updateLS();
+    }, 300)
 });
 
 lightMode.addEventListener("click", lightModeFunc);
